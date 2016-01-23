@@ -28,14 +28,16 @@ X = data.drop(['IND_QUOTE_CONVERSION','QUOTE_NUM','ORIGINAL_QUOTE_DATE'],axis=1)
 
 X_train, X_test, y_train, y_test  = train_test_split(X, y, test_size=0.4)
 
-k_range = range(1,26)
-scores = []
-for k in k_range:
-  knn = KNeighborsClassifier(n_neighbors=k)
-  knn.fit(X_train,y_train)
-  y_pred = knn.predict(X_test)
-  scores.append(metrics.accuracy_score(y_test,y_pred))
 
-plt.plot(k_range,scores)
-plt.xlabel('Value for k in knn')
-plt.ylabel('Testing accuracy')
+def knn_classifier():
+	k_range = range(1,26)
+	scores = []
+	for k in k_range:
+	  knn = KNeighborsClassifier(n_neighbors=k)
+	  knn.fit(X_train,y_train)
+	  y_pred = knn.predict(X_test)
+	  scores.append(metrics.accuracy_score(y_test,y_pred))
+
+	plt.plot(k_range,scores)
+	plt.xlabel('Value for k in knn')
+	plt.ylabel('Testing accuracy')
